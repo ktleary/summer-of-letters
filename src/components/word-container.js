@@ -27,7 +27,6 @@ const TabsHeader = styled.div`
 
 const TabLabel = styled.div`
   align-items: center;
-
   color: ${({ active }) =>
     active ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.50)"};
   cursor: pointer;
@@ -52,7 +51,11 @@ const WordContainer = () => {
   };
   const sortWordList = () => {
     if (wordlist.indexOf(",") === -1) return;
-    const parsed = wordlist.split(",").map((word) => word.trim().toUpperCase());
+    const parsed = wordlist
+      .split(",")
+      .map((word) => word.trim())
+      .filter((word) => word.length)
+      .map((word) => word.toUpperCase());
     setWordList([...new Set(parsed)].sort().join(", "));
   };
 

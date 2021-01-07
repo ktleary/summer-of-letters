@@ -41,7 +41,7 @@ function TabView(props) {
   const filterResultRow = (result) => {
     const qisNumb = !!Number(query);
     for (const val of Object.values(result)) {
-      if (qisNumb && Number(val) == Number(query)) return true;
+      if (qisNumb && Number(val) === Number(query)) return true;
       if (
         !qisNumb &&
         val.toString().toUpperCase().indexOf(query.toUpperCase()) !== -1
@@ -50,15 +50,15 @@ function TabView(props) {
     }
     return false;
   };
-
+  const id = nanoid();
   return (
     <TabViewWrapper>
       <SearchBox setQuery={setQuery} />
       <ResultsHeader />
       {results
         .filter((result) => filterResultRow(result))
-        .map((result) => (
-          <ResultRow row={result} key={nanoid()} />
+        .map((result, i) => (
+          <ResultRow row={result} key={`row-${id}-${i}`} />
         ))}
     </TabViewWrapper>
   );

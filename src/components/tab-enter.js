@@ -26,8 +26,8 @@ const EnterTextArea = styled.textarea`
   background: rgba(17, 17, 18, 1);
   border: 1px solid rgba(28, 28, 29, 1);
   border-radius: 8px;
-  color: rgba(255, 255, 255, 0.78);
-  font-family: "Roboto";
+  color: rgba(255, 255, 255, 0.66);
+  font-family: monospace;
   font-size: 16px;
   padding: 12px 8px;
   width: 80%;

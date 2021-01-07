@@ -15,27 +15,45 @@ const ButtonRow = styled.div`
 `;
 
 const TextAreaContainer = styled.div`
+  border-radius: 32px;
   justify-content: center;
   margin: 24px auto;
   text-align: center;
   width: 100%;
 `;
 
+const EnterTextArea = styled.textarea`
+  background: rgba(17, 17, 18, 1);
+  border: 1px solid rgba(28, 28, 29, 1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Roboto";
+  font-size: 16px;
+  padding: 12px 8px;
+  width: 80%;
+  &:hover {
+    border: 1px solid rgba(44, 44, 46, 1);
+  }
+  &:focus {
+    border: 1px solid rgba(44, 44, 46, 1);
+    outline: 0;
+  }
+
+  &:active {
+    border: 1px solid rgba(44, 44, 46, 1);
+    outline: 0;
+  }
+`;
+
 const TabEnter = ({ handleSubmit, onchange, sortWords, words }) => (
   <TextAreaContainer>
-    <textarea
+    <EnterTextArea
       id="word-entry"
       name="word-entry"
       value={words}
       placeholder={placeholder}
       onChange={onchange}
-      rows="20"
-      cols="50"
-      style={{
-        background: "#1b1b1b",
-        color: "#fafafa",
-        border: "1px solid #343434",
-      }}
+      rows="12"
     />
     <ButtonRow>
       <ButtonSort handleClick={sortWords} />

@@ -25,7 +25,7 @@ const TabQuick = () => {
   const resultData = query.length && letterSummerCore(query);
   return (
     <TabQuickWrapper>
-      <InputContainer style={{ marginTop: 32 }}>
+      <InputContainer>
         <Input placeholder="Check one" onChange={handleChange} />
       </InputContainer>
       {query && (

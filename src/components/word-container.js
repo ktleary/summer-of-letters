@@ -11,35 +11,35 @@ const VIEWS = Object.freeze({
 });
 
 const ControlBox = styled.div`
-  background: #1b1b1b;
-  border: 1px solid #313131;
+  background: rgba(23, 23, 24, 1);
+  border: 0;
   color: rgba(255, 255, 255, 0.78);
   margin: 48px auto;
   max-width: 600px;
-  min-height: 320px;
+  min-height: 384px;
   width: 78%;
 `;
 const TabsHeader = styled.div`
-  color: rgba(255, 255, 255, 0.87);
+  align-items: center;
   display: flex;
-  flex-wrap: nowrap;
-  height: 32px;
-  justify-content: left;
-  line-height: 18px;
-  vertical-align: middle;
+  margin-bottom: 16px;
 `;
 
 const TabLabel = styled.div`
-  border: 1px solid #313131;
-  color: rgba(255, 255, 255, 0.87);
-  font-family: sans-serif;
-  font-size: 18px;
-  padding: 6px 8px;
-  text-align: center;
-  flex: 3;
+  align-items: center;
+
+  color: ${({ active }) =>
+    active ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.50)"};
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  padding: 8px 0;
+  flex: 1;
   &:hover {
-    background-color: #313131;
-    color: white;
+    background-color: ${({ active }) =>
+      !active ? "rgba(39, 39, 40, 1)" : null};
+    color: ${({ active }) => (!active ? "rgba(255, 255, 255, 1)" : null)};
   }
 `;
 
@@ -53,7 +53,7 @@ const WordContainer = () => {
   const sortWordList = () => {
     if (wordlist.indexOf(",") === -1) return;
     const parsed = wordlist.split(",").map((word) => word.trim().toUpperCase());
-    setWordList(parsed.sort().join(", "));
+    setWordList([...new Set(parsed)].sort().join(", "));
   };
 
   const processEntry = () => setActiveTab(VIEWS.VIEW);
@@ -79,9 +79,15 @@ const WordContainer = () => {
   return (
     <ControlBox>
       <TabsHeader>
-        <TabLabel onClick={activateEnter}>{VIEWS.ENTER}</TabLabel>
-        <TabLabel onClick={activateView}>{VIEWS.VIEW}</TabLabel>
-        <TabLabel onClick={activateQuick}>{VIEWS.QUICK}</TabLabel>
+        <TabLabel onClick={activateEnter} active={activeTab === VIEWS.ENTER}>
+          {VIEWS.ENTER}
+        </TabLabel>
+        <TabLabel onClick={activateView} active={activeTab === VIEWS.VIEW}>
+          {VIEWS.VIEW}
+        </TabLabel>
+        <TabLabel onClick={activateQuick} active={activeTab === VIEWS.QUICK}>
+          {VIEWS.QUICK}
+        </TabLabel>
       </TabsHeader>
       {tabContent[activeTab]}
     </ControlBox>

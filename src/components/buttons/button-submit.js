@@ -5,6 +5,7 @@ const Submit = styled.div`
   background: #343434;
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
   font-size: 18px;
   margin: auto;
   height: 32px;

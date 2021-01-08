@@ -5,7 +5,6 @@ import ButtonSort from "./buttons/button-sort";
 
 const ButtonRow = styled.div`
   align-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   padding: 16px 0;

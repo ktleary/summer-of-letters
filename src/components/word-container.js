@@ -11,16 +11,14 @@ import { summerSort } from "../util/parse";
 
 const LetterBox = styled.div`
   background: rgba(23, 23, 24, 1);
-  border: 0;
   color: rgba(255, 255, 255, 0.78);
   margin: 48px auto;
   max-width: 600px;
-  min-height: 384px;
+  min-height: 424px;
   width: 78%;
 `;
 
 const Content = styled.div`
-  border: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 const WordContainer = () => {
@@ -40,7 +38,6 @@ const WordContainer = () => {
 
   const sortWordList = () => {
     const summerSorted = summerSort(wordlist);
-    console.log({ summerSorted });
     setWordList(summerSorted);
   };
 
@@ -79,7 +76,9 @@ const WordContainer = () => {
           }[activeTab]
         }
       </Content>
-      <Controls sortWords={sortWordList} handleSubmit={processEntry} />
+      {activeTab === VIEWS.ENTER && (
+        <Controls sortWords={sortWordList} handleSubmit={processEntry} />
+      )}
     </LetterBox>
   );
 };

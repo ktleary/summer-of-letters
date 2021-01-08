@@ -18,7 +18,7 @@ const EnterTextArea = styled.textarea`
   font-family: monospace;
   font-size: 16px;
   padding: 12px 8px;
-  width: 80%;
+  width: 87%;
   &:hover {
     border: 1px solid rgba(44, 44, 46, 1);
   }

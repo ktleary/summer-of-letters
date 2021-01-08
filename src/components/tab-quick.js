@@ -7,7 +7,9 @@ import { Cell } from "./cell";
 import { Input, InputContainer } from "./input";
 const labels = ["English", "Eng Rev", "Reduction", "Red Rev"];
 
-const TabQuickWrapper = styled.div``;
+const TabQuickWrapper = styled.div`
+  padding-top: 24px;
+`;
 const id = nanoid();
 
 const ResultsHeader = () => (

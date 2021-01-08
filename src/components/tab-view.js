@@ -4,19 +4,16 @@ import { nanoid } from "nanoid";
 import SearchBox from "./search-box";
 import ResultRow from "./result-row";
 import ResultsHeader from "./results-header";
-import letterSummerCore from "../lib/letter-summer-core.js";
+import { parseResults } from "../util/parse";
 
-const TabViewWrapper = styled.div``;
+const TabViewWrapper = styled.div`
+  padding-top: 24px;
+`;
 
-function TabView(props) {
+function TabView({ wordlist }) {
   const [query, setQuery] = useState("");
-  const { wordlist } = props;
-
-  const results = wordlist
-    .split(",")
-    .filter((word) => word.length)
-    .map((word) => word.trim())
-    .map((word) => Object.assign({ word }, letterSummerCore(word)));
+  const id = nanoid();
+  const results = parseResults(wordlist);
 
   const filterResultRow = (result) => {
     const qisNumb = !!Number(query);
@@ -30,7 +27,7 @@ function TabView(props) {
     }
     return false;
   };
-  const id = nanoid();
+
   return (
     <TabViewWrapper>
       <SearchBox setQuery={setQuery} />

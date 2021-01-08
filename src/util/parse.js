@@ -1,5 +1,4 @@
-import letterSummerCore from '../lib/letter-summer-core';
-
+import letterSummerCore from "../lib/letter-summer-core";
 export const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
 
 export const parseCsv = (csv) =>

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import letterSummerCore from "../lib/letter-summer-core";
+import Tabs from "./tabs";
 import TabEnter from "./tab-enter";
 import TabView from "./tab-view";
 import TabQuick from "./tab-quick";
+import Controls from "./controls";
+import { VIEWS } from "../constants";
+import { summerSort } from "../util/parse";
 
-const VIEWS = Object.freeze({
-  ENTER: "Enter Words",
-  VIEW: "View Results",
-  QUICK: "Quick Check",
-});
-
-const ControlBox = styled.div`
+const LetterBox = styled.div`
   background: rgba(23, 23, 24, 1);
   border: 0;
   color: rgba(255, 255, 255, 0.78);
@@ -20,89 +18,69 @@ const ControlBox = styled.div`
   min-height: 384px;
   width: 78%;
 `;
-const TabsHeader = styled.div`
-  align-items: center;
-  display: flex;
-  margin-bottom: 16px;
-`;
 
-const TabLabel = styled.div`
-  align-items: center;
-  color: ${({ active }) =>
-    active ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.50)"};
-  cursor: pointer;
-  display: flex;
-  font-size: 16px;
-  justify-content: center;
-  padding: 8px 0;
-  flex: 1;
-  &:hover {
-    background-color: ${({ active }) =>
-      !active ? "rgba(39, 39, 40, 1)" : null};
-    color: ${({ active }) => (!active ? "rgba(255, 255, 255, 1)" : null)};
-  }
+const Content = styled.div`
+  border: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 const WordContainer = () => {
   const [activeTab, setActiveTab] = useState(VIEWS.ENTER);
   const [wordlist, setWordList] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
+
   const handleTextArea = (e) => {
     const { value } = e.target;
     setWordList(value);
   };
+
   const handleQuickQuery = (e) => {
-    setQuickQuery(e.target.value);
+    const { value } = e.target;
+    setQuickQuery(value);
   };
 
   const sortWordList = () => {
-    if (wordlist.indexOf(",") === -1) return;
-    const parsed = wordlist
-      .split(",")
-      .map((word) => word.trim())
-      .filter((word) => word.length)
-      .map((word) => word.toUpperCase());
-    setWordList([...new Set(parsed)].sort().join(", "));
+    const summerSorted = summerSort(wordlist);
+    console.log({ summerSorted });
+    setWordList(summerSorted);
   };
 
   const processEntry = () => setActiveTab(VIEWS.VIEW);
-  const updateWords = (words) => setWordList(words);
-  const activateEnter = () => setActiveTab(VIEWS.ENTER);
-  const activateView = () => setActiveTab(VIEWS.VIEW);
-  const activateQuick = () => setActiveTab(VIEWS.QUICK);
-  const resultData = quickQuery && letterSummerCore(quickQuery);
 
-  const tabContent = {
-    [VIEWS.ENTER]: (
-      <TabEnter
-        handleSubmit={processEntry}
-        sortWords={sortWordList}
-        words={wordlist}
-        onchange={handleTextArea}
-        updateWords={updateWords}
-      />
-    ),
-    [VIEWS.VIEW]: <TabView wordlist={wordlist} />,
-    [VIEWS.QUICK]: (
-      <TabQuick handleChange={handleQuickQuery} resultData={resultData} query={quickQuery} />
-    ),
+  const updateWords = (words) => setWordList(words);
+
+  const handleActivate = (e) => {
+    const view = e.currentTarget.getAttribute("name");
+    setActiveTab(view);
   };
 
+  const resultData = quickQuery && letterSummerCore(quickQuery);
+
   return (
-    <ControlBox>
-      <TabsHeader>
-        <TabLabel onClick={activateEnter} active={activeTab === VIEWS.ENTER}>
-          {VIEWS.ENTER}
-        </TabLabel>
-        <TabLabel onClick={activateView} active={activeTab === VIEWS.VIEW}>
-          {VIEWS.VIEW}
-        </TabLabel>
-        <TabLabel onClick={activateQuick} active={activeTab === VIEWS.QUICK}>
-          {VIEWS.QUICK}
-        </TabLabel>
-      </TabsHeader>
-      {tabContent[activeTab]}
-    </ControlBox>
+    <LetterBox>
+      <Tabs activeTab={activeTab} handleClick={handleActivate} />
+      <Content>
+        {
+          {
+            [VIEWS.ENTER]: (
+              <TabEnter
+                words={wordlist}
+                onchange={handleTextArea}
+                updateWords={updateWords}
+              />
+            ),
+            [VIEWS.VIEW]: <TabView wordlist={wordlist} />,
+            [VIEWS.QUICK]: (
+              <TabQuick
+                handleChange={handleQuickQuery}
+                resultData={resultData}
+                query={quickQuery}
+              />
+            ),
+          }[activeTab]
+        }
+      </Content>
+      <Controls sortWords={sortWordList} handleSubmit={processEntry} />
+    </LetterBox>
   );
 };
 export default WordContainer;

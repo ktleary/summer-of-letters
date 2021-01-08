@@ -1,18 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonSubmit from "./buttons/button-submit";
-import ButtonSort from "./buttons/button-sort";
-
 const placeholder = "Enter a comma-separated list of words.";
-
-const ButtonRow = styled.div`
-  align-content: stretch;
-  display: flex;
-  justify-content: flex-start;
-  margin: 16px auto;
-  max-width: 300px;
-  width: 100%;
-`;
 
 const TextAreaContainer = styled.div`
   border-radius: 32px;
@@ -45,7 +33,7 @@ const EnterTextArea = styled.textarea`
   }
 `;
 
-const TabEnter = ({ handleSubmit, onchange, sortWords, words }) => (
+const TabEnter = ({ onchange, words }) => (
   <TextAreaContainer>
     <EnterTextArea
       id="word-entry"
@@ -55,10 +43,6 @@ const TabEnter = ({ handleSubmit, onchange, sortWords, words }) => (
       onChange={onchange}
       rows="12"
     />
-    <ButtonRow>
-      <ButtonSort handleClick={sortWords} />
-      <ButtonSubmit handleClick={handleSubmit} />
-    </ButtonRow>
   </TextAreaContainer>
 );
 

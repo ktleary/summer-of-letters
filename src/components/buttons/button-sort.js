@@ -2,19 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const Sort = styled.div`
-  background: #343434;
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.9);
+  align-items: center;
+  background: rgba(58, 58, 60, 1);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.89);
   cursor: pointer;
+  display: flex;
   font-size: 18px;
-  margin: auto;
+  justify-content: center;
   height: 32px;
-  line-height: 32px;
-  vertical-align: middle;
+  margin: auto;
   width: 102px;
   &:hover {
-    background-color: #303f9f;
-    color: white;
+    background-color: rgba(18, 132, 255, 0.89);
+    color: rgba(255, 255, 255, 1);
   }
 `;
 

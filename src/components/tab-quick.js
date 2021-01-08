@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import ResultsRow from "./result-row";
 import Row from "./row";
@@ -19,23 +19,18 @@ const ResultsHeader = () => (
   </Row>
 );
 
-const TabQuick = () => {
-  const [query, setQuery] = useState("");
-  const handleChange = (e) => setQuery(e && e.target.value);
-  const resultData = query.length && letterSummerCore(query);
-  return (
-    <TabQuickWrapper>
-      <InputContainer>
-        <Input placeholder="Check one" onChange={handleChange} />
-      </InputContainer>
-      {query && (
-        <>
-          <ResultsHeader />
-          <ResultsRow row={resultData} />
-        </>
-      )}
-    </TabQuickWrapper>
-  );
-};
+const TabQuick = ({ handleChange, query, resultData }) => (
+  <TabQuickWrapper>
+    <InputContainer>
+      <Input placeholder="Check one" onChange={handleChange} value={query} />
+    </InputContainer>
+    {resultData && (
+      <>
+        <ResultsHeader />
+        <ResultsRow row={resultData} />
+      </>
+    )}
+  </TabQuickWrapper>
+);
 
 export default TabQuick;

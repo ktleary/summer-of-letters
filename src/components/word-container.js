@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import letterSummerCore from "../lib/letter-summer-core";
 import TabEnter from "./tab-enter";
 import TabView from "./tab-view";
 import TabQuick from "./tab-quick";
@@ -43,12 +44,17 @@ const TabLabel = styled.div`
 `;
 
 const WordContainer = () => {
-  let [activeTab, setActiveTab] = useState(VIEWS.ENTER);
-  let [wordlist, setWordList] = useState("");
+  const [activeTab, setActiveTab] = useState(VIEWS.ENTER);
+  const [wordlist, setWordList] = useState("");
+  const [quickQuery, setQuickQuery] = useState("");
   const handleTextArea = (e) => {
     const { value } = e.target;
     setWordList(value);
   };
+  const handleQuickQuery = (e) => {
+    setQuickQuery(e.target.value);
+  };
+
   const sortWordList = () => {
     if (wordlist.indexOf(",") === -1) return;
     const parsed = wordlist
@@ -64,6 +70,7 @@ const WordContainer = () => {
   const activateEnter = () => setActiveTab(VIEWS.ENTER);
   const activateView = () => setActiveTab(VIEWS.VIEW);
   const activateQuick = () => setActiveTab(VIEWS.QUICK);
+  const resultData = quickQuery && letterSummerCore(quickQuery);
 
   const tabContent = {
     [VIEWS.ENTER]: (
@@ -76,7 +83,9 @@ const WordContainer = () => {
       />
     ),
     [VIEWS.VIEW]: <TabView wordlist={wordlist} />,
-    [VIEWS.QUICK]: <TabQuick />,
+    [VIEWS.QUICK]: (
+      <TabQuick handleChange={handleQuickQuery} resultData={resultData} query={quickQuery} />
+    ),
   };
 
   return (

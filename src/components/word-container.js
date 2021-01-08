@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import letterSummerCore from "../lib/letter-summer-core";
+import Controls from "./controls";
 import Tabs from "./tabs";
 import TabEnter from "./tab-enter";
-import TabView from "./tab-view";
 import TabQuick from "./tab-quick";
-import Controls from "./controls";
+import TabView from "./tab-view";
+import letterSummerCore from "../lib/letter-summer-core";
 import { VIEWS } from "../constants";
 import { summerSort } from "../util/parse";
 
@@ -18,8 +18,7 @@ const LetterBox = styled.div`
   width: 78%;
 `;
 
-const Content = styled.div`
-`;
+const Content = styled.div``;
 
 const WordContainer = () => {
   const [activeTab, setActiveTab] = useState(VIEWS.ENTER);
@@ -30,26 +29,20 @@ const WordContainer = () => {
     const { value } = e.target;
     setWordList(value);
   };
-
   const handleQuickQuery = (e) => {
     const { value } = e.target;
     setQuickQuery(value);
   };
-
   const sortWordList = () => {
     const summerSorted = summerSort(wordlist);
     setWordList(summerSorted);
   };
-
   const processEntry = () => setActiveTab(VIEWS.VIEW);
-
   const updateWords = (words) => setWordList(words);
-
   const handleActivate = (e) => {
     const view = e.currentTarget.getAttribute("name");
     setActiveTab(view);
   };
-
   const resultData = quickQuery && letterSummerCore(quickQuery);
 
   return (

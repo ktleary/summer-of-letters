@@ -10,23 +10,23 @@ const TabViewWrapper = styled.div`
   padding-top: 24px;
 `;
 
+const filterResultRow = ({ query, result }) => {
+  const queryIsNumb = !!Number(query);
+  for (const val of Object.values(result)) {
+    if (queryIsNumb && Number(val) === Number(query)) return true;
+    if (
+      !queryIsNumb &&
+      val.toString().toUpperCase().indexOf(query.toUpperCase()) !== -1
+    )
+      return true;
+  }
+  return false;
+};
+
 function TabView({ wordlist }) {
   const [query, setQuery] = useState("");
   const id = nanoid();
   const results = parseResults(wordlist);
-
-  const filterResultRow = (result) => {
-    const qisNumb = !!Number(query);
-    for (const val of Object.values(result)) {
-      if (qisNumb && Number(val) === Number(query)) return true;
-      if (
-        !qisNumb &&
-        val.toString().toUpperCase().indexOf(query.toUpperCase()) !== -1
-      )
-        return true;
-    }
-    return false;
-  };
 
   return (
     <TabViewWrapper>
@@ -34,7 +34,7 @@ function TabView({ wordlist }) {
       <ResultsHeader />
       {results &&
         results
-          .filter((result) => filterResultRow(result))
+          .filter((result) => filterResultRow({ query, result }))
           .map((result, i) => (
             <ResultRow row={result} key={`row-${id}-${i}`} />
           ))}

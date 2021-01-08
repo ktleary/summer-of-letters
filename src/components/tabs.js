@@ -13,7 +13,7 @@ const TabLabel = styled.div`
     active ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.50)"};
   cursor: pointer;
   display: flex;
-  font-size: 16px;
+  font-size: calc(10px + 1vmin);
   justify-content: center;
   padding: 16px 0;
   flex: 1;

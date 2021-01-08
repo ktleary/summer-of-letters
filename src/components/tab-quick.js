@@ -5,24 +5,29 @@ import ResultsRow from "./result-row";
 import Row from "./row";
 import { Cell } from "./cell";
 import { Input, InputContainer } from "./input";
+
 const labels = ["English", "Eng Rev", "Reduction", "Red Rev"];
+const id = nanoid();
 
 const TabQuickWrapper = styled.div`
   padding-top: 24px;
 `;
-const id = nanoid();
+const ResultsHeaderRow = styled(Row)`
+  margin-top: 16px;
+`;
+
+
+const ResultsCell = styled(Cell)`
+  color: rgba(255, 255, 255, 0.89);
+`;
+
 
 const ResultsHeader = () => (
-  <Row>
+  <ResultsHeaderRow>
     {labels.map((label, i) => (
-      <Cell
-        style={{ color: "rgba(255, 255, 255, 0.89)" }}
-        key={`label-${id}-${i}`}
-      >
-        {label}
-      </Cell>
+      <ResultsCell key={`label-${id}-${i}`}>{label}</ResultsCell>
     ))}
-  </Row>
+  </ResultsHeaderRow>
 );
 
 const TabQuick = ({ handleChange, query, resultData }) => (
@@ -30,12 +35,8 @@ const TabQuick = ({ handleChange, query, resultData }) => (
     <InputContainer>
       <Input placeholder="Check one" onChange={handleChange} value={query} />
     </InputContainer>
-    {resultData && (
-      <>
-        <ResultsHeader />
-        <ResultsRow row={resultData} />
-      </>
-    )}
+    <ResultsHeader />
+    <ResultsRow row={resultData} />
   </TabQuickWrapper>
 );
 

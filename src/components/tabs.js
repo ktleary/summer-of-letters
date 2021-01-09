@@ -24,19 +24,26 @@ const TabLabel = styled.div`
   }
 `;
 
-const Tabs = ({ activeTab, handleClick }) => (
-  <TabsHeader>
-    {Object.values(VIEWS).map((view, idx) => (
-      <TabLabel
-        key={`tabs-${idx}`}
-        name={view}
-        onClick={handleClick}
-        active={activeTab === view}
-      >
-        {view}
-      </TabLabel>
-    ))}
-  </TabsHeader>
-);
+const Tabs = ({ activeTab, setActiveTab }) => {
+  const handleClick = (e) => {
+    const { id } = e.target;
+    setActiveTab(id);
+  };
+  return (
+    <TabsHeader>
+      {Object.values(VIEWS).map((view, idx) => (
+        <TabLabel
+          key={`tabs-${idx}`}
+          name={view}
+          id={view}
+          onClick={handleClick}
+          active={activeTab === view}
+        >
+          {view}
+        </TabLabel>
+      ))}
+    </TabsHeader>
+  );
+};
 
 export default Tabs;

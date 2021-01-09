@@ -28,14 +28,26 @@ const ResultsHeader = () => (
   </ResultsHeaderRow>
 );
 
-const TabQuick = ({ handleChange, query, resultData }) => (
-  <TabQuickWrapper data-testid="tab-quick">
-    <InputContainer>
-      <Input placeholder="Check one" onChange={handleChange} value={query} data-testid="quick-input" />
-    </InputContainer>
-    <ResultsHeader />
-    <ResultsRow row={resultData} />
-  </TabQuickWrapper>
-);
+const TabQuick = ({ setQuickQuery, query, resultData }) => {
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setQuickQuery(value);
+  };
+
+  return (
+    <TabQuickWrapper data-testid="tab-quick">
+      <InputContainer>
+        <Input
+          placeholder="Check one"
+          onChange={handleChange}
+          value={query}
+          data-testid="quick-input"
+        />
+      </InputContainer>
+      <ResultsHeader />
+      <ResultsRow row={resultData} />
+    </TabQuickWrapper>
+  );
+};
 
 export default TabQuick;

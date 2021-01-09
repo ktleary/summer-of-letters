@@ -5,32 +5,25 @@ import SearchBox from "./search-box";
 import ResultRow from "./result-row";
 import ResultsHeader from "./results-header";
 import { parseResults } from "../util/parse";
+import { filterResultRow } from "../util/filter";
 
 const TabViewWrapper = styled.div`
   padding-top: 24px;
 `;
 
-const filterResultRow = ({ query, result }) => {
-  const queryIsNumb = !!Number(query);
-  for (const val of Object.values(result)) {
-    if (queryIsNumb && Number(val) === Number(query)) return true;
-    if (
-      !queryIsNumb &&
-      val.toString().toUpperCase().indexOf(query.toUpperCase()) !== -1
-    )
-      return true;
-  }
-  return false;
-};
+const id = nanoid();
 
 function TabView({ wordlist }) {
   const [query, setQuery] = useState("");
-  const id = nanoid();
   const results = parseResults(wordlist);
+  const handleQuery = (e) => {
+    const val = e.target.value;
+    setQuery(val);
+  };
 
   return (
     <TabViewWrapper data-testid="tab-view">
-      <SearchBox setQuery={setQuery} />
+      <SearchBox handleChange={handleQuery} />
       <ResultsHeader />
       {results &&
         results

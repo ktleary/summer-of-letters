@@ -25,45 +25,32 @@ const WordContainer = () => {
   const [wordlist, setWordList] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
 
-  const handleTextArea = (e) => {
-    const { value } = e.target;
-    setWordList(value);
-  };
-  const handleQuickQuery = (e) => {
-    const { value } = e.target;
-    setQuickQuery(value);
-  };
   const sortWordList = () => {
     const summerSorted = summerSort(wordlist);
     setWordList(summerSorted);
   };
+
   const processEntry = () => setActiveTab(VIEWS.VIEW);
   const updateWords = (words) => setWordList(words);
-
-  const handleActivate = (e) => {
-    const view = e.currentTarget.getAttribute("name");
-    setActiveTab(view);
-  };
-
   const resultData = quickQuery && letterSummerCore(quickQuery);
 
   return (
     <LetterBox>
-      <Tabs activeTab={activeTab} handleClick={handleActivate} />
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <Content>
         {
           {
             [VIEWS.ENTER]: (
               <TabEnter
                 words={wordlist}
-                onchange={handleTextArea}
+                setWordList={setWordList}
                 updateWords={updateWords}
               />
             ),
             [VIEWS.VIEW]: <TabView wordlist={wordlist} />,
             [VIEWS.QUICK]: (
               <TabQuick
-                handleChange={handleQuickQuery}
+                setQuickQuery={setQuickQuery}
                 resultData={resultData}
                 query={quickQuery}
               />

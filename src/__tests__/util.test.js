@@ -1,9 +1,39 @@
-import letterSummerCore from "../lib/letter-summer-core";
 import { parseCsv, summerSort, parseResults } from "../util/parse";
+import { filterResultRow } from "../util/filter";
 
-it("should be hello for hello", () => {
-  const hello = "hello";
-  expect(hello).toEqual("hello");
+describe("test filterResultRow", () => {
+  it("should find the query", () => {
+    const query = "change";
+    const results = parseResults("TRY, HOPE, CHANGE");
+    const passed = results.filter((result) =>
+      filterResultRow({ query, result })
+    );
+    expect(passed.length).toBe(1);
+  });
+  it("should not find the query", () => {
+    const query = "retry";
+    const results = parseResults("TRY, HOPE, CHANGE");
+    const passed = results.filter((result) =>
+      filterResultRow({ query, result })
+    );
+    expect(passed.length).toBe(0);
+  });
+  it("should find the number", () => {
+    const query = 44;
+    const results = parseResults("TRY, HOPE, CHANGE");
+    const passed = results.filter((result) =>
+      filterResultRow({ query, result })
+    );
+    expect(passed.length).toBe(1);
+  });
+  it("should not find the number", () => {
+    const query = 23;
+    const results = parseResults("TRY, HOPE, CHANGE");
+    const passed = results.filter((result) =>
+      filterResultRow({ query, result })
+    );
+    expect(passed.length).toBe(0);
+  });
 });
 
 describe("test parseCsv", () => {

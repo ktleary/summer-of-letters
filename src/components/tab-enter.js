@@ -33,18 +33,24 @@ const EnterTextArea = styled.textarea`
   }
 `;
 
-const TabEnter = ({ onchange, words }) => (
-  <TextAreaContainer>
-    <EnterTextArea
-      id="word-entry"
-      name="word-entry"
-      value={words}
-      placeholder={placeholder}
-      onChange={onchange}
-      rows="12"
-      data-testid="enter-textarea"
-    />
-  </TextAreaContainer>
-);
+const TabEnter = ({ setWordList, words }) => {
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setWordList(value);
+  };
+  return (
+    <TextAreaContainer>
+      <EnterTextArea
+        id="word-entry"
+        name="word-entry"
+        value={words}
+        placeholder={placeholder}
+        onChange={handleChange}
+        rows="12"
+        data-testid="enter-textarea"
+      />
+    </TextAreaContainer>
+  );
+};
 
 export default TabEnter;

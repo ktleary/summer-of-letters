@@ -15,10 +15,10 @@ const ButtonContainer = styled.div`
   padding: 0 16px;
 `;
 
-const Controls = ({ sortWords, handleSubmit }) => (
+const Controls = ({ setWordList, sortWords, handleSubmit }) => (
   <ButtonRow>
     <ButtonContainer data-testid="button-sort">
-      <ButtonSort handleClick={sortWords}  />
+      <ButtonSort handleClick={sortWords} />
     </ButtonContainer>
     <ButtonContainer>
       <ButtonSubmit handleClick={handleSubmit} />

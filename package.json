@@ -1,5 +1,6 @@
 {
   "name": "summer-of-letters",
+  "description": "A tool for summing the letters of words and filtering by number.",
   "version": "0.1.0",
   "browserslist": {
     "production": [

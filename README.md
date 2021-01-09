@@ -1,6 +1,6 @@
 # summer of letters
 
-A tool for summing letters.
+An online tool for summing the letters of words.
 
 ## Usage
 

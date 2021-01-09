@@ -42,6 +42,7 @@ const TabEnter = ({ onchange, words }) => (
       placeholder={placeholder}
       onChange={onchange}
       rows="12"
+      data-testid="enter-textarea"
     />
   </TextAreaContainer>
 );

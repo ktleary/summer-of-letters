@@ -19,3 +19,4 @@ export const parseResults = (wordlist) =>
     .filter((word) => word.length)
     .map((word) => word.trim())
     .map((word) => Object.assign({ word }, letterSummerCore(word)));
+

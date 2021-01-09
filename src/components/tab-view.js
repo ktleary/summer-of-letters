@@ -29,7 +29,7 @@ function TabView({ wordlist }) {
   const results = parseResults(wordlist);
 
   return (
-    <TabViewWrapper>
+    <TabViewWrapper data-testid="tab-view">
       <SearchBox setQuery={setQuery} />
       <ResultsHeader />
       {results &&

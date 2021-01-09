@@ -1,12 +1,7 @@
-export const filterResultRow = ({ query, result }) => {
-  const queryIsNumb = !!Number(query);
-  for (const val of Object.values(result)) {
-    if (queryIsNumb && Number(val) === Number(query)) return true;
-    if (
-      !queryIsNumb &&
-      val.toString().toUpperCase().indexOf(query.toUpperCase()) !== -1
-    )
-      return true;
-  }
-  return false;
-};
+export const filterResultRow = ({ query, result }) =>
+  !Number(query)
+    ? result.word.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    : Object.values(result).reduce(
+        (bool, val) => (!bool ? (bool = Number(val) === Number(query)) : bool),
+        false
+      );

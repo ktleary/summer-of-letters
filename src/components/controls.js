@@ -17,8 +17,8 @@ const ButtonContainer = styled.div`
 
 const Controls = ({ sortWords, handleSubmit }) => (
   <ButtonRow>
-    <ButtonContainer>
-      <ButtonSort handleClick={sortWords} />
+    <ButtonContainer data-testid="button-sort">
+      <ButtonSort handleClick={sortWords}  />
     </ButtonContainer>
     <ButtonContainer>
       <ButtonSubmit handleClick={handleSubmit} />

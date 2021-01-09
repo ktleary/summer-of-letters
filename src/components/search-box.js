@@ -8,7 +8,7 @@ function SearchBox(props) {
     setQuery(val);
   };
   return (
-    <InputContainer>
+    <InputContainer data-testid="search-box">
       <Input
         onChange={handleOnChange}
         placeholder="Search."

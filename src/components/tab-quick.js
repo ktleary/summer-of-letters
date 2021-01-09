@@ -16,11 +16,9 @@ const ResultsHeaderRow = styled(Row)`
   margin-top: 16px;
 `;
 
-
 const ResultsCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.89);
 `;
-
 
 const ResultsHeader = () => (
   <ResultsHeaderRow>
@@ -31,9 +29,9 @@ const ResultsHeader = () => (
 );
 
 const TabQuick = ({ handleChange, query, resultData }) => (
-  <TabQuickWrapper>
+  <TabQuickWrapper data-testid="tab-quick">
     <InputContainer>
-      <Input placeholder="Check one" onChange={handleChange} value={query} />
+      <Input placeholder="Check one" onChange={handleChange} value={query} data-testid="quick-input" />
     </InputContainer>
     <ResultsHeader />
     <ResultsRow row={resultData} />

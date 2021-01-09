@@ -39,10 +39,12 @@ const WordContainer = () => {
   };
   const processEntry = () => setActiveTab(VIEWS.VIEW);
   const updateWords = (words) => setWordList(words);
+
   const handleActivate = (e) => {
     const view = e.currentTarget.getAttribute("name");
     setActiveTab(view);
   };
+
   const resultData = quickQuery && letterSummerCore(quickQuery);
 
   return (

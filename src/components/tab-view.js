@@ -13,6 +13,13 @@ const TabViewWrapper = styled.div`
 
 const id = nanoid();
 
+const Results = ({ results, query }) =>
+  results
+    .filter((result) => filterResultRow({ query, result }))
+    .map((result, i) => <ResultRow row={result} key={`row-${id}-${i}`} />);
+
+const OptimizedResults = React.memo(Results);
+
 function TabView({ wordlist }) {
   const [query, setQuery] = useState("");
   const results = parseResults(wordlist);
@@ -25,12 +32,7 @@ function TabView({ wordlist }) {
     <TabViewWrapper data-testid="tab-view">
       <SearchBox handleChange={handleQuery} />
       <ResultsHeader />
-      {results &&
-        results
-          .filter((result) => filterResultRow({ query, result }))
-          .map((result, i) => (
-            <ResultRow row={result} key={`row-${id}-${i}`} />
-          ))}
+      <OptimizedResults results={results} query={query} />
     </TabViewWrapper>
   );
 }

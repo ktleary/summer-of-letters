@@ -2,7 +2,6 @@ import letterSummerCore from "../lib/letter-summer-core";
 import { SUMMERTYPES } from "../constants";
 export const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
 
-
 export const parseCsv = (csv, upper) =>
   csv
     .split(",")
@@ -19,8 +18,14 @@ export const parseResults = (wordlist = "") =>
   wordlist
     .split(",")
     .filter((word) => word.length)
-    .map((word) => word.trim())
-    .map((word) => Object.assign({ word }, letterSummerCore(word)));
+    .map((word) => word.toUpperCase().trim())
+    .filter((value, index, array) => array.indexOf(value) === index)
+    .map((word) => ({ ...{ word }, ...letterSummerCore(word) }));
+
+// TODO: this "sort" is garbage
+
+
+
 
 export const sortWords = (wordlist = "", prop = "") =>
   parseResults(wordlist)

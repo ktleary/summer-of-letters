@@ -33,6 +33,7 @@ const WordContainer = () => {
 
   const sortWordList = (e) => {
     const name = e.currentTarget.getAttribute("name");
+
     const sorted = sortWords(wordlist, SUMMERTYPES[labelKey(name)]);
     setWordList(sorted);
   };

@@ -49,7 +49,7 @@ describe("test controls", () => {
     const sortWordList = jest.fn();
     const processEntry = jest.fn();
     const { getByText } = render(
-      <Controls sortWords={sortWordList} handleSubmit={processEntry} />
+      <Controls handleSort={sortWordList} handleSubmit={processEntry} />
     );
     const sortButton = getByText("Sort");
     fireEvent.click(sortButton);

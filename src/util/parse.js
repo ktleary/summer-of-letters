@@ -13,10 +13,19 @@ export const summerSort = (wordlist) =>
     .sort()
     .join(", ");
 
-export const parseResults = (wordlist) =>
+export const parseResults = (wordlist = "") =>
   wordlist
     .split(",")
     .filter((word) => word.length)
     .map((word) => word.trim())
     .map((word) => Object.assign({ word }, letterSummerCore(word)));
 
+export const sortWords = (wordlist = "", prop = "") =>
+  parseResults(wordlist)
+    .sort((a, b) => {
+      if (a[prop] < b[prop]) return -1;
+      if (a[prop] > b[prop]) return 1;
+      return 0;
+    })
+    .map((item) => item.word.toUpperCase())
+    .join(", ");

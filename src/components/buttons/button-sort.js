@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { LABELS } from "../../constants";
 const Sort = styled.div`
   align-items: center;
   background: rgba(58, 58, 60, 1);
@@ -19,6 +19,10 @@ const Sort = styled.div`
   }
 `;
 
-const ButtonSort = ({ handleClick }) => <Sort onClick={handleClick}>Sort</Sort>;
+const ButtonSort = ({ handleClick }) => (
+  <Sort name={LABELS.WORD} onClick={handleClick}>
+    Sort
+  </Sort>
+);
 
 export default ButtonSort;

@@ -6,8 +6,8 @@ import TabEnter from "./tab-enter";
 import TabQuick from "./tab-quick";
 import TabView from "./tab-view";
 import letterSummerCore from "../lib/letter-summer-core";
-import { VIEWS } from "../constants";
-import { summerSort } from "../util/parse";
+import { summerSort, sortWords } from "../util/parse";
+import { LABELS, SUMMERTYPES, VIEWS } from "../constants";
 
 const LetterBox = styled.div`
   background: rgba(23, 23, 24, 1);
@@ -20,14 +20,21 @@ const LetterBox = styled.div`
 
 const Content = styled.div``;
 
+const labelKey = (val) =>
+  Object.keys(LABELS).reduce(
+    (selected, key) => (LABELS[key] === val ? key : selected),
+    "WORD"
+  );
+
 const WordContainer = () => {
   const [activeTab, setActiveTab] = useState(VIEWS.ENTER);
   const [wordlist, setWordList] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
 
-  const sortWordList = () => {
-    const summerSorted = summerSort(wordlist);
-    setWordList(summerSorted);
+  const sortWordList = (e) => {
+    const name = e.currentTarget.getAttribute("name");
+    const sorted = sortWords(wordlist, SUMMERTYPES[labelKey(name)]);
+    setWordList(sorted);
   };
 
   const processEntry = () => setActiveTab(VIEWS.VIEW);
@@ -47,7 +54,9 @@ const WordContainer = () => {
                 updateWords={updateWords}
               />
             ),
-            [VIEWS.VIEW]: <TabView wordlist={wordlist} />,
+            [VIEWS.VIEW]: (
+              <TabView handleSort={sortWordList} wordlist={wordlist} />
+            ),
             [VIEWS.QUICK]: (
               <TabQuick
                 setQuickQuery={setQuickQuery}
@@ -59,7 +68,7 @@ const WordContainer = () => {
         }
       </Content>
       {activeTab === VIEWS.ENTER && (
-        <Controls sortWords={sortWordList} handleSubmit={processEntry} />
+        <Controls handleSort={sortWordList} handleSubmit={processEntry} />
       )}
     </LetterBox>
   );

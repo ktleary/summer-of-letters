@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { nanoid } from "nanoid";
 import { Cell } from "./cell";
 import Row from "./row";
+import { LABELS } from "../constants";
 
 const HeaderCell = styled(Cell)`
   align-items: center;
@@ -14,6 +15,9 @@ const HeaderCell = styled(Cell)`
   justify-content: center;
   padding-top: 8px;
   padding-bottom: 8px;
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+  }
 `;
 
 const HeaderCellLeft = styled(Cell)`
@@ -34,22 +38,32 @@ const HeaderCellLeft = styled(Cell)`
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+  }
 `;
 
 const HeaderRow = styled(Row)`
   margin-top: 16px;
 `;
 
-const labels = ["Word", "Eng", "ER", "Red", "RR"];
 const id = nanoid();
 
-const ResultsHeader = () => (
+const ResultsHeader = ({ handleClick }) => (
   <HeaderRow>
-    {labels.map((label, i) => {
+    {Object.values(LABELS).map((label, i) => {
       return i === 0 ? (
-        <HeaderCellLeft key={`label-${id}-${i}`}>{label}</HeaderCellLeft>
+        <HeaderCellLeft
+          name={label}
+          onClick={handleClick}
+          key={`label-${id}-${i}`}
+        >
+          {label}
+        </HeaderCellLeft>
       ) : (
-        <HeaderCell key={`label-${id}-${i}`}>{label}</HeaderCell>
+        <HeaderCell name={label} onClick={handleClick} key={`label-${id}-${i}`}>
+          {label}
+        </HeaderCell>
       );
     })}
   </HeaderRow>

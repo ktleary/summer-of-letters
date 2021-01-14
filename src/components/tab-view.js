@@ -20,18 +20,18 @@ const Results = ({ results, query }) =>
 
 const OptimizedResults = React.memo(Results);
 
-function TabView({ wordlist }) {
+function TabView({ handleSort, wordlist }) {
   const [query, setQuery] = useState("");
   const results = parseResults(wordlist);
   const handleQuery = (e) => {
-    const val = e.target.value;
-    setQuery(val);
+    const { value } = e.target;
+    setQuery(value);
   };
 
   return (
     <TabViewWrapper data-testid="tab-view">
       <SearchBox handleChange={handleQuery} />
-      <ResultsHeader />
+      <ResultsHeader handleClick={handleSort} />
       <OptimizedResults results={results} query={query} />
     </TabViewWrapper>
   );

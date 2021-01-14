@@ -12,23 +12,24 @@ const TextAreaContainer = styled.div`
 
 const EnterTextArea = styled.textarea`
   background: rgba(17, 17, 18, 1);
-  border: 1px solid rgba(28, 28, 29, 1);
+  border: 1px solid rgba(72, 72, 74, 0.6);
   border-radius: 8px;
-  color: rgba(255, 255, 255, 0.66);
-  font-family: monospace;
+  color: rgba(242, 242, 247, 1);
   font-size: 16px;
+  outline: 0;
   padding: 12px 8px;
   width: 87%;
   &:hover {
-    border: 1px solid rgba(44, 44, 46, 1);
+    border: 1px solid rgba(72, 72, 74, 1);
+    outline: 0;
   }
   &:focus {
-    border: 1px solid rgba(44, 44, 46, 1);
+    border: 1px solid rgba(72, 72, 74, 1);
     outline: 0;
   }
 
   &:active {
-    border: 1px solid rgba(44, 44, 46, 1);
+    border: 1px solid rgba(72, 72, 74, 1);
     outline: 0;
   }
 `;
@@ -48,6 +49,7 @@ const TabEnter = ({ setWordList, words }) => {
         onChange={handleChange}
         rows="12"
         data-testid="enter-textarea"
+        autoFocus
       />
     </TextAreaContainer>
   );

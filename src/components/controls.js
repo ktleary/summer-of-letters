@@ -7,7 +7,7 @@ const ButtonRow = styled.div`
   align-content: center;
   display: flex;
   justify-content: center;
-  padding: 16px 0;
+  padding: 8px 0;
 `;
 
 const ButtonContainer = styled.div`

@@ -7,14 +7,22 @@ import Row from "./row";
 const HeaderCell = styled(Cell)`
   align-items: center;
   color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
   display: flex;
   flex: 1;
+  font-size: 16px;
   justify-content: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
 `;
 
 const HeaderCellLeft = styled(Cell)`
   flex: 2;
+  cursor: pointer;
   justify-content: flex-start;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 8px;
   padding-right: -8px;
   overflow-wrap: break-word;
@@ -32,20 +40,19 @@ const HeaderRow = styled(Row)`
   margin-top: 16px;
 `;
 
-const ResultsHeader = () => {
-  const labels = ["Word", "Eng", "E.R.", "Red", "R.R."];
-  const id = nanoid();
-  return (
-    <HeaderRow>
-      {labels.map((label, i) => {
-        return i === 0 ? (
-          <HeaderCellLeft key={`label-${id}-${i}`}>{label}</HeaderCellLeft>
-        ) : (
-          <HeaderCell key={`label-${id}-${i}`}>{label}</HeaderCell>
-        );
-      })}
-    </HeaderRow>
-  );
-};
+const labels = ["Word", "Eng", "ER", "Red", "RR"];
+const id = nanoid();
+
+const ResultsHeader = () => (
+  <HeaderRow>
+    {labels.map((label, i) => {
+      return i === 0 ? (
+        <HeaderCellLeft key={`label-${id}-${i}`}>{label}</HeaderCellLeft>
+      ) : (
+        <HeaderCell key={`label-${id}-${i}`}>{label}</HeaderCell>
+      );
+    })}
+  </HeaderRow>
+);
 
 export default ResultsHeader;

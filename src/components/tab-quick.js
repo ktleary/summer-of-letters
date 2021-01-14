@@ -6,18 +6,26 @@ import Row from "./row";
 import { Cell } from "./cell";
 import { Input, InputContainer } from "./input";
 
-const labels = ["English", "Eng Rev", "Reduction", "Red Rev"];
+const labels = ["Eng", "ER", "Red", "RR"];
 const id = nanoid();
 
 const TabQuickWrapper = styled.div`
   padding-top: 24px;
 `;
 const ResultsHeaderRow = styled(Row)`
+  font-size: 16px;
+  margin-top: 16px;
+`;
+
+const QuickResultsRow = styled(ResultsRow)`
+  border-bottom: 0;
+  font-size: 16px;
   margin-top: 16px;
 `;
 
 const ResultsCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.89);
+  font-size: 16px;
 `;
 
 const ResultsHeader = () => (
@@ -42,10 +50,11 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
           onChange={handleChange}
           value={query}
           data-testid="quick-input"
+          autoFocus
         />
       </InputContainer>
       <ResultsHeader />
-      <ResultsRow row={resultData} />
+      {resultData && <QuickResultsRow row={resultData} />}
     </TabQuickWrapper>
   );
 };

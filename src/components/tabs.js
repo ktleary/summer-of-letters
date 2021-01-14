@@ -10,7 +10,7 @@ const TabsHeader = styled.div`
 const TabLabel = styled.div`
   align-items: center;
   color: ${({ active }) =>
-    active ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.50)"};
+    active ? "rgba(255, 255, 255, 1)" : "rgba(235.0, 235.0, 245.0, 0.6)"};
   cursor: pointer;
   display: flex;
   font-size: calc(10px + 1vmin);
@@ -20,7 +20,8 @@ const TabLabel = styled.div`
   &:hover {
     background-color: ${({ active }) =>
       !active ? "rgba(39, 39, 40, 1)" : null};
-    color: ${({ active }) => (!active ? "rgba(255, 255, 255, 1)" : null)};
+    color: ${({ active }) =>
+      !active ? "rgba(235.0, 235.0, 245.0, 1.0)" : null};
   }
 `;
 

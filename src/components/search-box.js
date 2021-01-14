@@ -9,6 +9,7 @@ const SearchBox = ({ handleChange }) => (
       type="text"
       name="searchbox"
       id="searchbox"
+      autoFocus
     />
   </InputContainer>
 );

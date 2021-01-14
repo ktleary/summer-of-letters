@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, InputContainer } from "./input";
 
-const SearchBox = ({ handleChange }) => (
+const SearchBox = ({ handleChange, query }) => (
   <InputContainer>
     <Input
       onChange={handleChange}
@@ -9,6 +9,7 @@ const SearchBox = ({ handleChange }) => (
       type="text"
       name="searchbox"
       id="searchbox"
+      value={query}
       autoFocus
     />
   </InputContainer>

@@ -7,9 +7,8 @@ const Input = styled.input`
   color: rgba(255, 255, 255, 0.87);
   font-size: 16px;
   height: 20px;
-  max-width: 500px;
   padding: 8px;
-  width: 87%;
+  width: 100%;
   &:hover {
     border: 1px solid rgba(72, 72, 74, 1);
   }
@@ -27,7 +26,11 @@ const Input = styled.input`
 const InputContainer = styled.div`
   align-items: center;
   display: flex;
-  justify-content: center;
+  flex: 1;
+  justify-content: flex-end;
+  margin-left: 16px;
+  padding: 0;
+
 `;
 
 export { Input, InputContainer };

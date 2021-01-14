@@ -8,12 +8,14 @@ const multi = (row) => Object.keys(row).length > 4;
 
 const ResultCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
   display: flex;
   flex: 1;
   justify-content: center;
 `;
 
 const ResultCellLeft = styled(Cell)`
+  cursor: pointer;
   flex: 2;
   justify-content: flex-start;
   padding-left: 8px;
@@ -29,18 +31,36 @@ const ResultCellLeft = styled(Cell)`
   hyphens: auto;
 `;
 
-const ResultRow = ({ row }) => {
+const ResultRowWrapper = styled(Row)`
+  &:hover {
+    background: rgb(30, 30, 32, 1);
+  }
+`;
+
+const ResultRow = ({ handleClick, row }) => {
   const isMulti = multi(row);
   return (
-    <Row>
+    <ResultRowWrapper>
       {Object.values(row).map((typeValue, i) => {
         return i === 0 && isMulti ? (
-          <ResultCellLeft key={`result-cell-${i}`}>{typeValue}</ResultCellLeft>
+          <ResultCellLeft
+            name={typeValue}
+            onClick={handleClick}
+            key={`result-cell-${i}`}
+          >
+            {typeValue}
+          </ResultCellLeft>
         ) : (
-          <ResultCell key={`result-cell${i}`}>{typeValue}</ResultCell>
+          <ResultCell
+            name={typeValue}
+            onClick={handleClick}
+            key={`result-cell${i}`}
+          >
+            {typeValue}
+          </ResultCell>
         );
       })}
-    </Row>
+    </ResultRowWrapper>
   );
 };
 

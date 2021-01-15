@@ -10,11 +10,11 @@ import { parseResults } from "../util/parse";
 
 const ViewCloseButton = styled(CloseButton)`
   border-radius: 6px;
-  border: 1px solid rgba(72, 72, 74, 1);
+  border: 1px solid rgba(50, 50, 52, 0.76);
   color: rgba(235, 235, 245, 0.6);
   cursor: pointer;
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
   &:hover {
     color: rgba(235, 235, 245, 1);
   }

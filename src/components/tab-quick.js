@@ -23,6 +23,10 @@ const QuickResultsRow = styled(ResultsRow)`
   margin-top: 16px;
 `;
 
+const QuickInputContainer = styled(InputContainer)`
+  padding-right: 16px;
+`;
+
 const ResultsCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.89);
   font-size: 16px;
@@ -44,7 +48,7 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
 
   return (
     <TabQuickWrapper data-testid="tab-quick">
-      <InputContainer>
+      <QuickInputContainer>
         <Input
           placeholder="Check one"
           onChange={handleChange}
@@ -52,7 +56,7 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
           data-testid="quick-input"
           autoFocus
         />
-      </InputContainer>
+      </QuickInputContainer>
       <ResultsHeader />
       {resultData && <QuickResultsRow row={resultData} />}
     </TabQuickWrapper>

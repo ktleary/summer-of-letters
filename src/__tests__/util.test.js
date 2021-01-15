@@ -4,9 +4,9 @@ import { filterResultRow } from "../util/filter";
 describe("test filterResultRow", () => {
   it("should find the query", () => {
     const query = "change";
-    const results = parseResults("TRY, HOPE, CHANGE");
-    const passed = results.filter((result) =>
-      filterResultRow({ query, result })
+    const wordSums = parseResults("TRY, HOPE, CHANGE");
+    const passed = wordSums.filter((wordSum) =>
+      filterResultRow({ query, wordSum  })
     );
     expect(passed.length).toBe(1);
   });
@@ -14,7 +14,7 @@ describe("test filterResultRow", () => {
     const query = "retry";
     const results = parseResults("TRY, HOPE, CHANGE");
     const passed = results.filter((result) =>
-      filterResultRow({ query, result })
+      filterResultRow({ query, wordSum: result })
     );
     expect(passed.length).toBe(0);
   });
@@ -22,7 +22,7 @@ describe("test filterResultRow", () => {
     const query = 44;
     const results = parseResults("TRY, HOPE, CHANGE");
     const passed = results.filter((result) =>
-      filterResultRow({ query, result })
+      filterResultRow({ query, wordSum: result })
     );
     expect(passed.length).toBe(1);
   });
@@ -30,7 +30,7 @@ describe("test filterResultRow", () => {
     const query = 23;
     const results = parseResults("TRY, HOPE, CHANGE");
     const passed = results.filter((result) =>
-      filterResultRow({ query, result })
+      filterResultRow({ query, wordSum: result })
     );
     expect(passed.length).toBe(0);
   });

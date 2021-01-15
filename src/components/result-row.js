@@ -5,8 +5,6 @@ import { nanoid } from "nanoid";
 import Row from "./row";
 import { Cell } from "./cell";
 
-const multi = (row) => Object.keys(row).length > 4;
-
 const ResultCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.87);
   cursor: pointer;

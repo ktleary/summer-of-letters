@@ -14,29 +14,27 @@ export const summerSort = (wordlist) =>
     .sort()
     .join(", ");
 
+// create word sums for wordlist
 export const parseResults = (wordlist = "") =>
-  wordlist
-    .split(",")
-    .filter((word) => word.length)
-    .map((word) => word.toUpperCase().trim())
-    .filter((value, index, array) => array.indexOf(value) === index)
-    .map((word) => ({ ...{ word }, ...letterSummerCore(word) }));
-
-// TODO: this "sort" is garbage
-
-
-
+  [
+    ...new Set(
+      wordlist
+        .split(",")
+        .map((word) => word.toUpperCase().trim())
+        .filter((word) => word.length)
+    ),
+  ].map((word) => letterSummerCore(word));
 
 export const sortWords = (wordlist = "", prop = "") =>
   parseResults(wordlist)
     .sort((a, b) => {
-      if (a[prop] === b[prop]) {
+      if (a["sums"][prop] === b["sums"][prop]) {
         if (a[SUMMERTYPES.WORD] < b[SUMMERTYPES.WORD]) return -1;
         if (a[SUMMERTYPES.WORD] > b[SUMMERTYPES.WORD]) return 1;
         return 0;
       }
-      if (a[prop] < b[prop]) return -1;
-      if (a[prop] > b[prop]) return 1;
+      if (a["sums"][prop] < b["sums"][prop]) return -1;
+      if (a["sums"][prop] > b["sums"][prop]) return 1;
       return 0;
     })
     .map((item) => item.word.toUpperCase())

@@ -18,10 +18,13 @@ const calculateReduction = ({ word, key }) =>
   }, 0);
 
 const letterSummerCore = (word) => ({
-  english: calculateOrdinal({ word, key: english }),
-  englishReversed: calculateOrdinal({ word, key: englishReversed }),
-  reduction: calculateReduction({ word, key: english }),
-  reductionReversed: calculateReduction({ word, key: englishReversed }),
+  word: word,
+  sums: {
+    english: calculateOrdinal({ word, key: english }),
+    englishReversed: calculateOrdinal({ word, key: englishReversed }),
+    reduction: calculateReduction({ word, key: english }),
+    reductionReversed: calculateReduction({ word, key: englishReversed }),
+  },
 });
 
 export default letterSummerCore;

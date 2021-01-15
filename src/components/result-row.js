@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 
 import Row from "./row";
 import { Cell } from "./cell";
@@ -37,29 +38,25 @@ const ResultRowWrapper = styled(Row)`
   }
 `;
 
-const ResultRow = ({ handleClick, row }) => {
-  const isMulti = multi(row);
+const id = nanoid();
+
+const ResultRow = ({ handleClick, isMulti, row }) => {
   return (
     <ResultRowWrapper>
-      {Object.values(row).map((typeValue, i) => {
-        return i === 0 && isMulti ? (
-          <ResultCellLeft
-            name={typeValue}
-            onClick={handleClick}
-            key={`result-cell-${i}`}
-          >
-            {typeValue}
-          </ResultCellLeft>
-        ) : (
-          <ResultCell
-            name={typeValue}
-            onClick={handleClick}
-            key={`result-cell${i}`}
-          >
-            {typeValue}
-          </ResultCell>
-        );
-      })}
+      {isMulti && (
+        <ResultCellLeft name={row.word} onClick={handleClick}>
+          {row.word}
+        </ResultCellLeft>
+      )}
+      {Object.values(row.sums).map((typeValue, i) => (
+        <ResultCell
+          name={typeValue}
+          onClick={handleClick}
+          key={`result-cell-${id}-${i}`}
+        >
+          {typeValue}
+        </ResultCell>
+      ))}
     </ResultRowWrapper>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import Controls from "./controls";
 import Tabs from "./tabs";
@@ -6,7 +6,7 @@ import TabEnter from "./tab-enter";
 import TabQuick from "./tab-quick";
 import TabView from "./tab-view";
 import letterSummerCore from "../lib/letter-summer-core";
-import { summerSort, sortWords } from "../util/parse";
+import { sortWords } from "../util/parse";
 import { LABELS, SUMMERTYPES, VIEWS } from "../constants";
 
 const LetterBox = styled.div`
@@ -33,7 +33,6 @@ const WordContainer = () => {
 
   const sortWordList = (e) => {
     const name = e.currentTarget.getAttribute("name");
-
     const sorted = sortWords(wordlist, SUMMERTYPES[labelKey(name)]);
     setWordList(sorted);
   };
@@ -56,7 +55,10 @@ const WordContainer = () => {
               />
             ),
             [VIEWS.VIEW]: (
-              <TabView handleSort={sortWordList} wordlist={wordlist} />
+              <TabView
+                handleSort={sortWordList}
+                wordlist={wordlist}
+              />
             ),
             [VIEWS.QUICK]: (
               <TabQuick

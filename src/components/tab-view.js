@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 import SearchBox from "./search-box";
 import ResultRow from "./result-row";
 import CloseButton from "./buttons/CloseButton";
 import ResultsHeader from "./results-header";
-import { parseResults } from "../util/parse";
 import { filterResultRow } from "../util/filter";
+import { parseResults } from "../util/parse";
 
 const ViewCloseButton = styled(CloseButton)`
   border-radius: 6px;
@@ -26,16 +26,15 @@ const TabViewWrapper = styled.div`
 
 const id = nanoid();
 
-const Results = ({ handleClick, query, results }) =>
-  results
-    .filter((result) => filterResultRow({ query, result }))
-    .map((result, i) => (
-      <ResultRow
-        handleClick={handleClick}
-        row={result}
-        key={`row-${id}-${i}`}
-      />
-    ));
+const Results = ({ handleClick, query, wordSums }) =>
+  wordSums.map((result, i) => (
+    <ResultRow
+      handleClick={handleClick}
+      row={result}
+      isMulti={true}
+      key={`row-${id}-${i}`}
+    />
+  ));
 
 const SearchWrapper = styled.div`
   align-items: center;
@@ -55,7 +54,10 @@ const ButtonHolder = styled.div`
 
 function TabView({ handleViewClear, handleSort, wordlist }) {
   const [query, setQuery] = useState("");
-  const results = parseResults(wordlist);
+  const parsedFiltered = parseResults(wordlist).filter((wordSum) =>
+    filterResultRow({ query, wordSum })
+  );
+
   const handleQuery = (e) => {
     const { value } = e.target;
     setQuery(value);
@@ -64,7 +66,6 @@ function TabView({ handleViewClear, handleSort, wordlist }) {
     const name = e.currentTarget.getAttribute("name");
     setQuery(name);
   };
-
 
   return (
     <TabViewWrapper data-testid="tab-view">
@@ -75,7 +76,7 @@ function TabView({ handleViewClear, handleSort, wordlist }) {
         </ButtonHolder>
       </SearchWrapper>
       <ResultsHeader handleClick={handleSort} />
-      <Results handleClick={handleClick} results={results} query={query} />
+      <Results handleClick={handleClick} wordSums={parsedFiltered} query={query} />
     </TabViewWrapper>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 import ResultsRow from "./result-row";
+import ResultsHeader from "./results-header";
 import Row from "./row";
 import { Cell } from "./cell";
 import SearchBox from "./search-box";
@@ -28,13 +29,13 @@ const ResultsCell = styled(Cell)`
   font-size: 16px;
 `;
 
-const ResultsHeader = () => (
-  <ResultsHeaderRow>
-    {labels.map((label, i) => (
-      <ResultsCell key={`label-${id}-${i}`}>{label}</ResultsCell>
-    ))}
-  </ResultsHeaderRow>
-);
+// const ResultsHeader = () => (
+//   <ResultsHeaderRow>
+//     {labels.map((label, i) => (
+//       <ResultsCell key={`label-${id}-${i}`}>{label}</ResultsCell>
+//     ))}
+//   </ResultsHeaderRow>
+// );
 
 const TabQuick = ({ setQuickQuery, query, resultData }) => {
   const handleChange = (e) => {
@@ -52,12 +53,10 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
         handleClose={handleClose}
         query={query}
       />
-      <ResultsHeader />
-      {resultData && <QuickResultsRow row={resultData} />}
+      <ResultsHeader isSingle={true} />
+      {resultData && <QuickResultsRow isSingle={true} row={resultData} />}
     </TabQuickWrapper>
   );
 };
 
 export default TabQuick;
-
-

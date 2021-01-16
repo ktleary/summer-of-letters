@@ -9,22 +9,12 @@ const ResultCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.87);
   cursor: pointer;
   display: flex;
-  flex: 1;
-  justify-content: center;
-`;
-
-const ResultCellLeft = styled(Cell)`
-  cursor: pointer;
-  flex: 2;
-  justify-content: flex-start;
-  padding-left: 8px;
-  padding-right: -8px;
-  @media(min-width: 444px){
-    padding-left: 16px;
-    padding-right: -16px;
-  }
-
+  flex: ${({ left }) => (left ? 2 : 1)};
+  justify-content: ${({ left }) => (left ? "flex-start" : "center")};
+  margin-left: ${({ left }) => (left ? "16px" : null)};
+  margin-right: ${({ left }) => (left ? "-16px" : null)};
   overflow-wrap: break-word;
+  padding: auto;
   word-wrap: break-word;
   -ms-word-break: break-all;
   word-break: break-all;
@@ -43,25 +33,23 @@ const ResultRowWrapper = styled(Row)`
 
 const id = nanoid();
 
-const ResultRow = ({ handleClick, isMulti, row }) => {
-  return (
-    <ResultRowWrapper>
-      {isMulti && (
-        <ResultCellLeft name={row.word} onClick={handleClick}>
-          {row.word}
-        </ResultCellLeft>
-      )}
-      {Object.values(row.sums).map((typeValue, i) => (
-        <ResultCell
-          name={typeValue}
-          onClick={handleClick}
-          key={`result-cell-${id}-${i}`}
-        >
-          {typeValue}
-        </ResultCell>
-      ))}
-    </ResultRowWrapper>
-  );
-};
+const ResultRow = ({ handleClick, isSingle = false, row }) => (
+  <ResultRowWrapper>
+    {!isSingle && (
+      <ResultCell left={true} name={row.word} onClick={handleClick}>
+        {row.word}
+      </ResultCell>
+    )}
+    {Object.values(row.sums).map((typeValue, i) => (
+      <ResultCell
+        name={typeValue}
+        onClick={handleClick}
+        key={`result-cell-${id}-${i}`}
+      >
+        {typeValue}
+      </ResultCell>
+    ))}
+  </ResultRowWrapper>
+);
 
 export default ResultRow;

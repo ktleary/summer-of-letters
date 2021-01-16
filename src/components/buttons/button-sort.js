@@ -16,6 +16,10 @@ const Sort = styled.button`
   outline: 0;
   width: 102px;
   &:hover {
+    background-color: rgba(10, 132, 255, 0.6);
+    color: rgba(255, 255, 255, 1);
+  }
+  &:active {
     background-color: rgba(10, 132, 255, 1);
     color: rgba(255, 255, 255, 1);
   }

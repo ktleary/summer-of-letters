@@ -16,7 +16,11 @@ const Submit = styled.button`
   outline: 0;
   width: 102px;
   &:hover {
-    background-color: rgba(52, 199, 89, 0.89);
+    background-color: rgba(48.0, 209.0, 88.0, 0.6);
+    color: rgba(255, 255, 255, 1);
+  }
+  &:active {
+    background-color: rgba(48.0, 209.0, 88.0, 1);
     color: rgba(255, 255, 255, 1);
   }
   &:disabled {

@@ -47,7 +47,7 @@ function TabView({ handleViewClear, handleSort, wordlist }) {
         handleClose={handleClose}
         query={query}
       />
-      <ResultsHeader handleClick={handleSort} />
+      <ResultsHeader isMulti={false} handleClick={handleSort} />
       <Results
         handleClick={handleClick}
         wordSums={parsedFiltered}

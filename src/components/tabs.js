@@ -26,7 +26,10 @@ const TabLabel = styled.div`
     background-color: ${({ active }) =>
       !active ? "rgba(39, 39, 40, 1)" : null};
     color: ${({ active }) =>
-      !active ? "rgba(235.0, 235.0, 245.0, 1.0)" : null};
+      !active ? "rgba(235.0, 235.0, 245.0, 0.87)" : null};
+  }
+  &:active {
+    color: ${({ active }) => (!active ? "rgba(48.0, 209.0, 88.0, 1)" : null)};
   }
 `;
 

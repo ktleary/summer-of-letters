@@ -10,38 +10,14 @@ const HeaderCell = styled(Cell)`
   color: rgba(255, 255, 255, 0.87);
   cursor: pointer;
   display: flex;
-  flex: 1;
+  flex: ${({ left }) => (left ? 2 : 1)};
   font-size: 16px;
-  justify-content: center;
+  justify-content: ${({ left }) => (left ? "flex-start" : "center")};
+  margin-left: ${({ left }) => (left ? "16px" : null)};
+  margin-right: ${({ left }) => (left ? "-16px" : null)};
   padding-top: 8px;
   padding-bottom: 8px;
-  &:hover {
-    color: rgba(255, 255, 255, 1);
-  }
-`;
 
-const HeaderCellLeft = styled(Cell)`
-  flex: 2;
-  cursor: pointer;
-  justify-content: flex-start;
-  font-size: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 8px;
-  padding-right: -8px;
-  @media (min-width: 444px) {
-    padding-left: 16px;
-    padding-right: -16px;
-  }
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
   &:hover {
     color: rgba(255, 255, 255, 1);
   }
@@ -53,23 +29,20 @@ const HeaderRow = styled(Row)`
 
 const id = nanoid();
 
-const ResultsHeader = ({ handleClick }) => (
+const ResultsHeader = ({ handleClick, isSingle = false }) => (
   <HeaderRow>
-    {Object.values(LABELS).map((label, i) => {
-      return i === 0 ? (
-        <HeaderCellLeft
+    {Object.values(LABELS).map((label, i) =>
+      i === 0 && isSingle ? null : (
+        <HeaderCell
+          left={i === 0}
           name={label}
           onClick={handleClick}
           key={`label-${id}-${i}`}
         >
           {label}
-        </HeaderCellLeft>
-      ) : (
-        <HeaderCell name={label} onClick={handleClick} key={`label-${id}-${i}`}>
-          {label}
         </HeaderCell>
-      );
-    })}
+      )
+    )}
   </HeaderRow>
 );
 

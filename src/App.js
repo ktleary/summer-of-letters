@@ -4,9 +4,11 @@ import Header from "./components/header";
 import WordContainer from "./components/word-container";
 
 const SummerOfLettersWrapper = styled.div`
-  background: rgba(17, 17, 18, 1);
+  background: rgba(0, 0, 0, 1);
   height: 100%;
-  padding-bottom: 16px;
+  padding: 0 16px;
+  margin: auto;
+  max-width: 1200px;
   min-height: 100vh;
 `;
 

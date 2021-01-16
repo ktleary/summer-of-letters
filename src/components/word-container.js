@@ -12,10 +12,8 @@ import { LABELS, SUMMERTYPES, VIEWS } from "../constants";
 const LetterBox = styled.div`
   background: rgba(23, 23, 24, 1);
   color: rgba(255, 255, 255, 0.78);
-  margin: 48px auto;
-  max-width: 600px;
+  margin: 24px auto;
   min-height: 424px;
-  width: 78%;
 `;
 
 const Content = styled.div``;
@@ -55,10 +53,7 @@ const WordContainer = () => {
               />
             ),
             [VIEWS.VIEW]: (
-              <TabView
-                handleSort={sortWordList}
-                wordlist={wordlist}
-              />
+              <TabView handleSort={sortWordList} wordlist={wordlist} />
             ),
             [VIEWS.QUICK]: (
               <TabQuick
@@ -71,7 +66,11 @@ const WordContainer = () => {
         }
       </Content>
       {activeTab === VIEWS.ENTER && (
-        <Controls handleSort={sortWordList} handleSubmit={processEntry} />
+        <Controls
+          disabled={wordlist.length < 1}
+          handleSort={sortWordList}
+          handleSubmit={processEntry}
+        />
       )}
     </LetterBox>
   );

@@ -4,13 +4,13 @@ import { nanoid } from "nanoid";
 import ResultsRow from "./result-row";
 import Row from "./row";
 import { Cell } from "./cell";
-import { Input, InputContainer } from "./input";
+import SearchBox from "./search-box";
 
 const labels = ["Eng", "ER", "Red", "RR"];
 const id = nanoid();
 
 const TabQuickWrapper = styled.div`
-  padding-top: 24px;
+  padding-top: 0;
 `;
 const ResultsHeaderRow = styled(Row)`
   font-size: 16px;
@@ -21,10 +21,6 @@ const QuickResultsRow = styled(ResultsRow)`
   border-bottom: 0;
   font-size: 16px;
   margin-top: 16px;
-`;
-
-const QuickInputContainer = styled(InputContainer)`
-  padding-right: 16px;
 `;
 
 const ResultsCell = styled(Cell)`
@@ -45,18 +41,17 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
     const { value } = e.target;
     setQuickQuery(value);
   };
+  const handleClose = (e) => {
+    setQuickQuery("");
+  };
 
   return (
     <TabQuickWrapper data-testid="tab-quick">
-      <QuickInputContainer>
-        <Input
-          placeholder="Check one"
-          onChange={handleChange}
-          value={query}
-          data-testid="quick-input"
-          autoFocus
-        />
-      </QuickInputContainer>
+      <SearchBox
+        handleChange={handleChange}
+        handleClose={handleClose}
+        query={query}
+      />
       <ResultsHeader />
       {resultData && <QuickResultsRow row={resultData} />}
     </TabQuickWrapper>
@@ -64,3 +59,5 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
 };
 
 export default TabQuick;
+
+

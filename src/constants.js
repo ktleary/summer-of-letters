@@ -1,6 +1,6 @@
 export const VIEWS = Object.freeze({
   ENTER: "Enter Words",
-  VIEW: "View Results",
+  VIEW: "View Sums",
   QUICK: "Single",
 });
 

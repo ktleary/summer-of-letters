@@ -8,17 +8,17 @@ const Input = styled.input`
   font-size: 16px;
   height: 20px;
   padding: 8px;
-  width: 96%;
+  width: 100%;
   &:hover {
     border: 1px solid rgba(72, 72, 74, 1);
   }
   &:focus {
-    border: 1px solid rgba(72, 72, 74, 1);
+    border: 1px solid rgba(10, 132, 255, 0.3);
     outline: 0;
   }
 
   &:active {
-    border: 1px solid rgba(72, 72, 74, 1);
+    border: 1px solid rgba(10, 132, 255, 0.3);
     outline: 0;
   }
 `;
@@ -28,9 +28,11 @@ const InputContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  margin-left: 16px;
-  padding: 0;
-
+  margin-left: 0;
+  padding-left: 12px;
+  @media (max-width: 444px) {
+    padding-left: 8px;
+  }
 `;
 
 export { Input, InputContainer };

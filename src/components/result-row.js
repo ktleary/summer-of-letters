@@ -19,6 +19,11 @@ const ResultCellLeft = styled(Cell)`
   justify-content: flex-start;
   padding-left: 8px;
   padding-right: -8px;
+  @media(min-width: 444px){
+    padding-left: 16px;
+    padding-right: -16px;
+  }
+
   overflow-wrap: break-word;
   word-wrap: break-word;
   -ms-word-break: break-all;

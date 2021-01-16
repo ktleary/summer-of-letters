@@ -6,16 +6,20 @@ const TabsHeader = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-bottom: 32px;
 `;
 
 const TabLabel = styled.div`
   align-items: center;
+  border-bottom: ${({ active }) =>
+    active ? "1px solid rgba(76, 76, 78, 1)" : "1px solid rgba(39, 39, 40, 1)"};
   color: ${({ active }) =>
     active ? "rgba(255, 255, 255, 1)" : "rgba(235.0, 235.0, 245.0, 0.6)"};
   cursor: pointer;
   display: flex;
   font-size: calc(10px + 1vmin);
   justify-content: center;
+  margin: 0;
   padding: 16px 0;
   flex-grow: 2;
   &:hover {

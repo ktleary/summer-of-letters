@@ -5,13 +5,18 @@ const HeaderStyle = styled.div`
   align-items: center;
   color: rgba(255, 255, 255, 0.87);
   display: flex;
-  justify-content: center;
-  margin: 16px 0;
+  justify-content: flex-start;
+  padding: 1em 0;
 `;
 
-const Title = styled.div`
-  color: rgba(255, 255, 255, 0.666);
-  font-size: 32px;
+const Title = styled.h1`
+  align-items: center;
+  color: rgba(255, 255, 255, 0.87);
+  display: flex;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
 `;
 
 export default function Header() {

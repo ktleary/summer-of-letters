@@ -5,6 +5,7 @@ import { VIEWS } from "../constants";
 const TabsHeader = styled.div`
   align-items: center;
   display: flex;
+  justify-content: center;
 `;
 
 const TabLabel = styled.div`
@@ -16,7 +17,7 @@ const TabLabel = styled.div`
   font-size: calc(10px + 1vmin);
   justify-content: center;
   padding: 16px 0;
-  flex: 1;
+  flex-grow: 2;
   &:hover {
     background-color: ${({ active }) =>
       !active ? "rgba(39, 39, 40, 1)" : null};

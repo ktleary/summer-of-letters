@@ -13,8 +13,8 @@ const ViewCloseButton = styled(CloseButton)`
   border: 1px solid rgba(50, 50, 52, 0.76);
   color: rgba(235, 235, 245, 0.6);
   cursor: pointer;
-  height: 32px;
-  width: 32px;
+  height: 28px;
+  width: 28px;
   &:hover {
     color: rgba(235, 235, 245, 1);
   }

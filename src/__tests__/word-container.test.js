@@ -26,7 +26,7 @@ describe("test sort", () => {
     fireEvent.change(textarea, { target: { value: wordlist } });
     const textareaText = screen.getByText(/peach/);
     expect(textareaText).toBeInTheDocument();
-    const sortButton = getByText("Sort");
+    const sortButton = getByText("SORT");
     fireEvent.click(sortButton);
     const updatedText = screen.getByText(/PEACH/);
     expect(updatedText).toBeInTheDocument();
@@ -51,12 +51,10 @@ describe("test controls", () => {
     const { getByText } = render(
       <Controls handleSort={sortWordList} handleSubmit={processEntry} />
     );
-    const sortButton = getByText("Sort");
+    const sortButton = getByText("SORT");
     fireEvent.click(sortButton);
     expect(sortWordList).toHaveBeenCalled();
   });
 });
-
-
 
 afterEach(cleanup);

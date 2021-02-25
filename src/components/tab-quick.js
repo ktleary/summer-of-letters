@@ -29,6 +29,7 @@ const TabQuick = ({ setQuickQuery, query, resultData }) => {
         handleChange={handleChange}
         handleClose={handleClose}
         query={query}
+        data-testid="quick-input"
       />
       <ResultsHeader isSingle={true} />
       {resultData && <QuickResultsRow isSingle={true} row={resultData} />}

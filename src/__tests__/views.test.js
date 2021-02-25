@@ -81,7 +81,7 @@ describe("test TabQuick", () => {
         query={quickQuery}
       />
     );
-    const quickInput = getByTestId("quick-input");
+    const quickInput = getByTestId("input");
     fireEvent.change(quickInput, { target: { value: inputtedvalue } });
   });
 });

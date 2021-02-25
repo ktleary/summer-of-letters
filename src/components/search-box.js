@@ -33,6 +33,7 @@ const SearchBox = ({ handleChange, handleClose, query}) => (
         id="searchbox"
         value={query}
         autoFocus
+        data-testid="input"
       />
     </InputContainer>
     <ButtonHolder onClick={handleClose}>
